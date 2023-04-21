@@ -50,3 +50,9 @@ def load_tags_from_project(project_path):
     tags_path = os.path.join(project_path, "tags.txt")
 
     return dd.data.load_tags(tags_path)
+
+def load_categories_from_project(project_path):
+    categories_path = os.path.join(project_path, "categories.json")
+    categories = dd.io.deserialize_from_json(categories_path)
+
+    return categories

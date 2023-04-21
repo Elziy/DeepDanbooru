@@ -29,8 +29,8 @@ def download_category_tags(
         "page": 1,
         "search[order]": order,
         "search[category]": category_index,
-        "login": username,
-        "api_key": api_key,
+        # "login": username,
+        # "api_key": api_key,
     }
 
     request_url = "https://danbooru.donmai.us/tags.json"
@@ -38,11 +38,17 @@ def download_category_tags(
 
     tags = set()
 
+    proxies = {
+        'http': 'http://127.0.0.1:7890',
+        'https': 'http://127.0.0.1:7890',
+    }
+
     while True:
         response = requests.get(
             request_url,
             params=parameters,
             headers=headers,
+            proxies=proxies
         )
         response_json = response.json()
 
